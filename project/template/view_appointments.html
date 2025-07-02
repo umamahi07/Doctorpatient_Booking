@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Appointments</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+     body {
+    background-image: url("https://www.pixelstalk.net/wp-content/uploads/images1/Medical-Background-download-free.png");
+}
+.container{
+    margin-top: 10%;
+    background-image: url("https://th.bing.com/th/id/OIP.AlKa4Rcloiwzx8H66o4sawHaEo?w=296&h=185&c=7&r=0&o=5&dpr=1.5&pid=1.7");
+    border-radius: 10%;
+}
+  </style>
+    
+</head>
+<body>
+
+    <body>
+       
+    <div class="container">
+        <h2>Your Appointments</h2>
+        <table>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.patient_name }}</td>
+                <td>{{ appointment.doctor_name }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.time }}</td>
+                <td>
+                    {% if current_user.role == "patient" %}
+                        <a href="{{ url_for('edit_appointment', id=appointment.id) }}" class="btn">Edit</a>
+                        <a href="{{ url_for('delete_appointment', id=appointment.id) }}" class="btn danger" onclick="return confirm('Are you sure?')">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% if current_user.role == "patient" %}
+            <a href="{{ url_for('appointment') }}" class="btn">Book New Appointment</a>
+        {% endif %}
+
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+    </div>
+</body>
+</html>

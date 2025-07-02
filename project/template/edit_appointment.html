@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Appointment</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> -->
+    <style>
+        body{
+            background-image: url("https://i.pinimg.com/474x/a6/73/e4/a673e44b27c8ec48e0eda2935386061f.jpg")
+        }
+        .container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    /* background: white; */
+    border-radius: 10px;
+    margin-top: 10%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, select, button {
+    width: 80%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Appointment</h2>
+        <form method="POST">
+            <input type="date" name="date" value="{{ appointment.date }}" required>
+            <input type="time" name="time" value="{{ appointment.time }}" required>
+            <button type="submit">Update</button>
+        </form>
+        <a href="{{ url_for('view_appointments') }}" class="btn">Back</a>
+    </div>
+</body>
+</html>
